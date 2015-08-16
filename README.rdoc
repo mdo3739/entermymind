@@ -5,9 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby 2.2.2
 
-* System dependencies
+* Rails 4.2.3
 
 * Configuration
 
