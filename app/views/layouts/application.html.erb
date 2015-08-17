@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Entermymind</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class='container'>
+    <div class='row'>
+      <ul class="nav nav-pills nav-stacked navbar-fixed-left col-md-2">
+        <li><%= link_to "Home", static_index_path %></li>
+        <li><%= link_to "Blog", blog_index_path %></li>
+        <li><%= link_to "Case Studies", case_studies_index_path %></li>
+        <li><%= link_to "Contact", static_contact_path %></li>  
+      </ul>
+      <div class='col-md-10'>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
