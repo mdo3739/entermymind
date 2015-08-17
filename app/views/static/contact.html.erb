@@ -1,11 +1,11 @@
-<h1>Static#contact</h1>
-<p>Find me in app/views/static/contact.html.erb</p>
+<h1>Contact Me</h1>
+
 <form action="https://getsimpleform.com/messages?form_api_token=f981ab3a3278b962c765e01d64816070" method="post">
   <!-- the redirect_to is optional, the form will redirect to the referrer on submission -->
   <!--input type='hidden' name='redirect_to' value='http://www.facebook.com' /-->
   <!-- all your input fields here.... -->
   <input type='text' name='name' placeholder='Your Full Name' /><br/><br/>
   <input type='text' name='email' placeholder="Email Address" /><br/><br/>
-  <input type='text' name='comment' placeholder='Write your message here' /><br/>
-  <input type='submit' value='Test form' />
+  <textarea name='message' placeholder='Write your message here' ></textarea><br/>
+  <input type='submit' value='Submit' />
 </form>
