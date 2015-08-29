@@ -5,11 +5,12 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script></script>
 </head>
 <body>
   <div class='container'>
     <div class='row'>
-      <ul class="nav nav-pills nav-stacked navbar-fixed-left col-md-2">
+      <ul class="nav nav-pills">
         <li><%= link_to "Home", static_index_path %></li>
         <li><%= link_to "Blog", blog_index_path %></li>
         <li><%= link_to "Case Studies", case_studies_index_path %></li>
