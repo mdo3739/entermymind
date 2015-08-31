@@ -1,0 +1,14 @@
+As a user, I want to be able to sign-up for a free account
+As a user, I want to be able to sign in and out
+As a user, I want to be able to create topics
+As a user, I want to be able to make topics private
+As a user, I want to be able to make posts
+As a user, I want to be able to make posts private
+As a user, I want to be able to comment on other peoples posts
+I want to be able to upvote or downvote a post
+I want to be able to see a list of the most popular posts
+I want to be able to add an avatar
+I want to be able to see other peoples profile pages11
+I want to be able to post annonymous posts
+As a developer, I want to be able to categorize users by personality
+user: my circle= close friends i talk to alot, friends= background friends
