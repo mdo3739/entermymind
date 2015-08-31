@@ -15,3 +15,6 @@ admin.save
   user.skip_confirmation!
   user.save
 end
+
+puts "Seeding Complete"
+puts "#{User.all.count} users in the database"
