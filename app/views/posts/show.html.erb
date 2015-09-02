@@ -1,0 +1,6 @@
+<%= @post.title %><br />
+Public: <%= @post.public %><br />
+<%= @post.body %><br />
+
+<%= link_to 'Edit', edit_topic_post_path(@topic, @post) %> |
+<%= link_to 'Back', topic_path(@topic) %>

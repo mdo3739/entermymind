@@ -16,5 +16,28 @@ admin.save
   user.save
 end
 
+User.all.each do |user|
+  4.times do
+    Topic.create(
+      name: Faker::Commerce.department(1),
+      user: user,
+      public: true
+    )
+  end
+end
+
+Topic.all.each do |topic|
+  5.times do
+    Post.create(
+      title:  Faker::Company.catch_phrase,
+      body:   Faker::Hacker.say_something_smart,
+      topic:  topic,
+      public: true
+    )
+  end
+end
+
 puts "Seeding Complete"
 puts "#{User.all.count} users in the database"
+puts "#{Topic.all.count} topics in the database"
+puts "#{Post.all.count} posts in the database"

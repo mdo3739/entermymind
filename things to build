@@ -4,6 +4,8 @@ name:string user:references
 Post model
 title:string body:text topic:references public:boolean, default true
 
+build seed file, and sanity check. make sure all links are working
+
 Comment model
 body:text post:references user:references
 
