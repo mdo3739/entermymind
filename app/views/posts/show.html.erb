@@ -1,6 +1,11 @@
 <%= @post.title %><br />
 Public: <%= @post.public %><br />
-<%= @post.body %><br />
-
+<%= @post.body %><br /><br />
+<% @comments.each do |comment| %>
+  <%= comment.body %><br />
+  <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+  <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %><br />
+<% end %><br />
+<%= link_to "Comment", new_post_comment_path(@post) %>
 <%= link_to 'Edit', edit_topic_post_path(@topic, @post) %> |
 <%= link_to 'Back', topic_path(@topic) %>

@@ -17,8 +17,8 @@ admin.save
 end
 
 User.all.each do |user|
-  4.times do
-    Topic.create(
+  2.times do
+    Topic.create!(
       name: Faker::Commerce.department(1),
       user: user,
       public: true
@@ -28,7 +28,7 @@ end
 
 Topic.all.each do |topic|
   5.times do
-    Post.create(
+    Post.create!(
       title:  Faker::Company.catch_phrase,
       body:   Faker::Hacker.say_something_smart,
       topic:  topic,
@@ -37,7 +37,18 @@ Topic.all.each do |topic|
   end
 end
 
+Post.all.each do |post|
+  3.times do
+    Comment.create!(
+      user: User.all.sample,
+      post: post,
+      body: Faker::Lorem.sentences(1)
+    )
+  end
+end
+
 puts "Seeding Complete"
 puts "#{User.all.count} users in the database"
 puts "#{Topic.all.count} topics in the database"
 puts "#{Post.all.count} posts in the database"
+puts "#{Comment.all.count} comments in the database"

@@ -21,7 +21,11 @@
   </div>
   <div class='form-group'>
     <%= f.label :public %>
-    <%= f.check_box :public, checked: topic.public %>
+    <% if f.object.id %>
+      <%= f.check_box :public, checked: post.public %>
+    <% else %>
+      <%= f.check_box :public, checked: topic.public %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

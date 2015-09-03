@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @topics = current_user.topics
   end
 
   # GET /topics/new
