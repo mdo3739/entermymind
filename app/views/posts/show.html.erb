@@ -1,4 +1,6 @@
-<%= @post.title %><br />
+<h1><%= @post.title %></h1><br />
+Date published: <%= @post.created_at.in_time_zone %><br />
+Last edited: <%= @post.updated_at %><br />
 Public: <%= @post.public %><br />
 <%= @post.body %><br /><br />
 <% @comments.each do |comment| %>

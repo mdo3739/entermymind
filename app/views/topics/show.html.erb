@@ -1,14 +1,14 @@
-<%= @topic.name %><br />
+<h1><%= @topic.name %></h1>
 Public: <%= @topic.public %>
-
-<h1>Listing Posts</h1>
 
 <ul class="nav nav-tabs">
   <% @topics.each do |topic| %>
-    <li role="presentation"><a href="topics/#{topic.id}"><%= topic.name %></a></li>
+    <li role="presentation"><%= link_to topic.name, topic_path(topic), data_toggle: 'tab' %></li>
   <% end %>
 </ul><br />
-
+<% @topic.posts.each do |post| %>
+  <%= link_to post.title, topic_post_path(@topic, post) %><br />
+<% end %>
 <br>
 
 <%= link_to "New Post", new_topic_post_path(@topic) %>
