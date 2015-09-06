@@ -47,8 +47,20 @@ Post.all.each do |post|
   end
 end
 
+choice = [-1, 1]
+Post.all.each do |post|
+  User.all.each do |user|
+    Vote.create!(
+      user: user,
+      post: post,
+      value: choice.sample
+    )
+  end
+end
+
 puts "Seeding Complete"
 puts "#{User.all.count} users in the database"
 puts "#{Topic.all.count} topics in the database"
 puts "#{Post.all.count} posts in the database"
 puts "#{Comment.all.count} comments in the database"
+puts "#{Vote.all.count} votes created"

@@ -2,6 +2,15 @@
 Date published: <%= @post.created_at.in_time_zone %><br />
 Last edited: <%= @post.updated_at %><br />
 Public: <%= @post.public %><br />
+<%= render partial: 'votes/voter', locals: {post: @post} %>
+<div>
+     <h3><%= pluralize(@post.sum, 'point') %></h3>
+     <small>
+       <%= pluralize(@post.up_votes, 'up vote') %>,
+       <%= pluralize(@post.down_votes, 'down vote') %>
+     </small>
+</div>
+
 <%= @post.body %><br /><br />
 <% @comments.each do |comment| %>
   <%= comment.body %><br />

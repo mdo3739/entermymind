@@ -4,10 +4,15 @@ Public: <%= @topic.public %>
 <ul class="nav nav-tabs">
   <% @topics.each do |topic| %>
     <li role="presentation"><%= link_to topic.name, topic_path(topic), data_toggle: 'tab' %></li>
-  <% end %>
+  <% end %> 
 </ul><br />
+
 <% @topic.posts.each do |post| %>
-  <%= link_to post.title, topic_post_path(@topic, post) %><br />
+  <%= render partial: 'votes/voter', locals: {post: post} %>
+  <div>
+    <h4><%= link_to post.title, topic_post_path(@topic, post) %></h4>
+    <small><%= post.created_at %></small>
+  </div><br />
 <% end %>
 <br>
 

@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts.sort_by {|post| post.sum}
   end
 
   def show
