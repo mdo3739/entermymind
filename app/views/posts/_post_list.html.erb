@@ -1,7 +1,7 @@
 <% posts.each do |post| %>
       <%= render partial: 'votes/voter', locals: {post: post} %>
       <div>
-        <h4><%= link_to post.title, topic_post_path(@topic, post) %></h4>
+        <h4><%= link_to post.title, topic_post_path(post.topic, post) %></h4>
         <small><%= post.created_at %></small>
       </div><br />
 <% end %>

@@ -5,19 +5,25 @@ Comments made: <%= @user.comments.count %><br/>
 <% if current_user && (current_user.admin? || current_user == @user) %>
   Public: <%= @topic.public %>
 <% end %>
+
 <div class='row'>
   <div class='col-md-offset-2 col-md-8'>
     <ul class="nav nav-tabs">
       <% @topics.each do |item| %>
         <li role="presentation"><%= link_to item.name, topic_path(item), data_toggle: 'tab' %></li>
       <% end %> 
-    </ul><br />
 
-    <%= render partial: 'posts/post_list', locals: {posts: @topic.posts} %>
+      <% if policy(@topic).update? %>
+        <div class='pull-right'><%= link_to " ", topics_path, class: 'glyphicon glyphicon-pencil' %></div>
+      <% end %>
+    </ul><br />
+    <% if policy(@topic).update? %>
+      <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %><br/>
+    <% end %>
+    <%= render partial: 'posts/post_list', locals: {posts: @posts} %>
+    <%= will_paginate @posts %>
   </div>
 </div>
 <br>
-
-<%= link_to "New Post", new_topic_post_path(@topic) %>
 <%= link_to 'Edit', edit_topic_path(@topic) %>
 <%= link_to 'Back', topics_path %>

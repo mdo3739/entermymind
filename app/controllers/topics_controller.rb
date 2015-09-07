@@ -21,6 +21,7 @@ class TopicsController < ApplicationController
     else
       @topics = @user.topics.where(public: true)
     end
+    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
     authorize @topic
   end
 
@@ -43,7 +44,7 @@ class TopicsController < ApplicationController
     authorize @topic
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
+        format.html { redirect_to topics_path, notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }

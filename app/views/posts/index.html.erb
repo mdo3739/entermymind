@@ -1,6 +1,4 @@
 <h1>Listing Posts</h1>
-
-<%= render partial: 'posts/post_list', locals: {posts: @posts} %>
-<br/>
-
-<%= link_to 'New Post', new_topic_post_path(@topic) %>
+<%= will_paginate @posts %><br/>
+<%= render partial: 'posts/post_list', locals: {posts: @posts} %><br/>
+<%= will_paginate @posts %>

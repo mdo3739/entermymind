@@ -2,9 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
-    @posts.sort_by {|post| post.sum}
-    @topic = Topic.find(params[:topic_id])
+    @posts = Post.all.paginate(page: params[:page], per_page: 10)
     authorize @posts
   end
 
@@ -15,7 +13,7 @@ class PostsController < ApplicationController
 
   def new
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new
+    @post = @topic.posts.build()
     authorize @post
   end
 
