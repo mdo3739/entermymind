@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get 'users/index'
-
-  get 'users/show'
+  get 'static/index'
+  get 'static/contact'
+  root to: 'static#index'
+  
+  devise_for :users
+  resources :users, only: [:index]
 
   resources :posts, only: [] do
     resources :comments, except: [:index]
@@ -11,8 +14,4 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts
   end
-  root to: 'static#index'
-  devise_for :users
-  get 'static/index'
-  get 'static/contact'
 end

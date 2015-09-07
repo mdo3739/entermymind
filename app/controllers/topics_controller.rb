@@ -3,12 +3,14 @@ class TopicsController < ApplicationController
 
   def index
     @topics = current_user.topics
+    authorize @topics
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topics = current_user.topics
+    @topics = @topic.user.topics
+    @user = @topic.user
   end
 
   # GET /topics/new

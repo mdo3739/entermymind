@@ -1,0 +1,15 @@
+<div class='col-md-offset-2 col-md-8'>
+  <ul class="nav nav-tabs">
+    <% topics.each do |item| %>
+      <li role="presentation"><%= link_to item.name, topic_path(item), data_toggle: 'tab' %></li>
+    <% end %> 
+  </ul><br />
+
+  <% topic.posts.each do |post| %>
+    <%= render partial: 'votes/voter', locals: {post: post} %>
+    <div>
+      <h4><%= link_to post.title, topic_post_path(@topic, post) %></h4>
+      <small><%= post.created_at %></small>
+    </div><br />
+  <% end %>
+</div>

@@ -1,19 +1,11 @@
-<h1><%= @topic.name %></h1>
+<h1><%= @user.username %></h1>
+Date joined: <%= @user.created_at.strftime("%B %e, %Y") %>
+Posts: <%= @user.posts.count %><br/>
+Comments made: <%= @user.comments.count %><br/>
 Public: <%= @topic.public %>
-
-<ul class="nav nav-tabs">
-  <% @topics.each do |topic| %>
-    <li role="presentation"><%= link_to topic.name, topic_path(topic), data_toggle: 'tab' %></li>
-  <% end %> 
-</ul><br />
-
-<% @topic.posts.each do |post| %>
-  <%= render partial: 'votes/voter', locals: {post: post} %>
-  <div>
-    <h4><%= link_to post.title, topic_post_path(@topic, post) %></h4>
-    <small><%= post.created_at %></small>
-  </div><br />
-<% end %>
+<div class='row'>
+  <%= render partial: 'topic_nav', locals: {topics: @topics, topic: @topic} %>
+</div>
 <br>
 
 <%= link_to "New Post", new_topic_post_path(@topic) %>
