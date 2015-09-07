@@ -1,12 +1,22 @@
 admin = User.new(
   username: 'Mike Deezy',
   email:    'admin@example.com',
-  password: 'helloworld'
+  password: 'helloworld',
+  role:     'Da Boss'
 )
 admin.skip_confirmation!
 admin.save
 
-4.times do
+user = User.new(
+  username: 'Member',
+  email:    'member@example.com',
+  password: 'helloworld',
+  role:     'member'
+)
+user.skip_confirmation!
+user.save
+
+3.times do
   user = User.new(
     username: Faker::Name.name,
     email:    Faker::Internet.safe_email,

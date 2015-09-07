@@ -2,7 +2,9 @@
 Date joined: <%= @user.created_at.strftime("%B %e, %Y") %>
 Posts: <%= @user.posts.count %><br/>
 Comments made: <%= @user.comments.count %><br/>
-Public: <%= @topic.public %>
+<% if current_user && (current_user.admin? || current_user == @user) %>
+  Public: <%= @topic.public %>
+<% end %>
 <div class='row'>
   <%= render partial: 'topic_nav', locals: {topics: @topics, topic: @topic} %>
 </div>

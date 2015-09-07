@@ -2,24 +2,37 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
-    @topics = current_user.topics
+    if !current_user 
+      @topics = Topic.new
+    elsif current_user.admin?
+      @topics = Topic.all
+    else
+      @topics = current_user.topics
+    end
     authorize @topics
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topics = @topic.user.topics
     @user = @topic.user
+    if current_user && ((current_user == @user) || current_user.admin?)
+      @topics = @user.topics
+    else
+      @topics = @user.topics.where(public: true)
+    end
+    authorize @topic
   end
 
   # GET /topics/new
   def new
     @topic = Topic.new
+    authorize @topic
   end
 
   # GET /topics/1/edit
   def edit
+    authorize @topic
   end
 
   # POST /topics
@@ -27,6 +40,7 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user = current_user
+    authorize @topic
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
@@ -41,6 +55,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
+    authorize @topic
     respond_to do |format|
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }

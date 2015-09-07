@@ -7,15 +7,15 @@ class ApplicationPolicy
   end
 
   def index?
-    true
+    user.present? && record.first.user == user
   end
 
   def show?
-    true
+    record.user == user || record.public || user.admin?
   end
 
   def create?
-    false
+    user.present?
   end
 
   def new?
@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    user.present? && (record.user == user || user.admin?)
   end
 
   def edit?
@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+    update?
   end
 
   def scope

@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :posts, through: :topics
+
+  def admin?
+    role == 'Da Boss'
+  end
 end
