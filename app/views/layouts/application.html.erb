@@ -20,7 +20,7 @@
     <div class='row'>
       <ul class="nav nav-pills">
         <li><%= link_to "Home", static_index_path %></li>
-        <li><%= link_to "Topic", topics_path %></li>
+        <li><%= link_to "Top Posts", topic_posts_path(Topic.first) %></li>
         <li><%= link_to "Contact", static_contact_path %></li>
         <li><%= link_to "Users", users_path %></li>
       </ul>

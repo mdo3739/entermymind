@@ -1,6 +1,6 @@
 <h1><%= @post.title %></h1><br />
-Date published: <%= @post.created_at.in_time_zone %><br />
-Last edited: <%= @post.updated_at %><br />
+Date published: <%= @post.created_at.strftime("%B %e, %Y") %><br />
+Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
 Public: <%= @post.public %><br />
 <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %><br/>
 <%= render partial: 'votes/voter', locals: {post: @post} %>
@@ -20,5 +20,7 @@ Public: <%= @post.public %><br />
 <% end %><br />
 <br/> <br/>
 <%= render partial: 'comments/comment', collection: @comments %><br/>
+<% if current_user %>
+  <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
+<% end %>
 <%= link_to 'Back', topic_path(@topic) %>
-<%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>

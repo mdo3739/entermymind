@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @posts.sort_by {|post| post.sum}
+    @topic = Topic.find(params[:topic_id])
+    authorize @posts
   end
 
   def show
@@ -14,15 +16,18 @@ class PostsController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
+    authorize @post
   end
 
   def edit
+    authorize @post
   end
 
   def create
     @post = Post.new(post_params)
     @topic = Topic.find(params[:topic_id])
     @post.topic = @topic
+    authorize @post
 
     respond_to do |format|
       if @post.save
@@ -36,6 +41,8 @@ class PostsController < ApplicationController
   end
 
   def update
+    authorize @post
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to [@topic, @post], notice: 'Post was successfully updated.' }
@@ -49,6 +56,7 @@ class PostsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:topic_id])
+    authorize @post
     @post.destroy
     respond_to do |format|
       format.html { redirect_to topic_url(@topic), notice: 'Post was successfully destroyed.' }

@@ -3,8 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   include Pundit
   protect_from_forgery with: :exception
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  rescue_from Pundit::NotAuthorizedError do |exception|
+    if current_user
+      redirect_to topic_url(current_user.topics.first), alert: "Don't touch it if it's not yours!"
+    else
+      redirect_to root_url, alert: "Please sign in first"
+    end
+  end
 
   protected
 

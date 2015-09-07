@@ -6,7 +6,15 @@ Comments made: <%= @user.comments.count %><br/>
   Public: <%= @topic.public %>
 <% end %>
 <div class='row'>
-  <%= render partial: 'topic_nav', locals: {topics: @topics, topic: @topic} %>
+  <div class='col-md-offset-2 col-md-8'>
+    <ul class="nav nav-tabs">
+      <% @topics.each do |item| %>
+        <li role="presentation"><%= link_to item.name, topic_path(item), data_toggle: 'tab' %></li>
+      <% end %> 
+    </ul><br />
+
+    <%= render partial: 'posts/post_list', locals: {posts: @topic.posts} %>
+  </div>
 </div>
 <br>
 
