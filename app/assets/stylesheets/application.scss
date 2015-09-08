@@ -20,3 +20,21 @@
   width: 40px;
   text-align: center;
 }
+
+.top-bar {
+  display: inline-block;
+  width: 100%;
+  background-color: grey;
+}
+
+#avatar {
+  background-color: blue;
+  height: 150px;
+}
+
+#quick-links {
+  height: 500px;
+  background-color: grey;
+  margin-top: 30px;
+  border-radius: 5px;
+}

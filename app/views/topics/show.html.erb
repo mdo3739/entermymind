@@ -1,13 +1,23 @@
-<h1><%= @user.username %></h1>
-Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
-Posts: <%= @user.posts.count %><br/>
-Comments made: <%= @user.comments.count %><br/>
-<% if current_user && (current_user.admin? || current_user == @user) %>
-  Public: <%= @topic.public %>
-<% end %>
+<div class='row'>
+  <div class='col-md-2' id='avatar'>
+
+  </div>
+  <div class='col-md-8'>
+    <h1><%= @user.username %></h1>
+    Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
+    Posts: <%= @user.posts.count %><br/>
+    Comments made: <%= @user.comments.count %><br/>
+    <% if current_user && (current_user.admin? || current_user == @user) %>
+      Public: <%= @topic.public %>
+    <% end %>
+  </div>
+</div>
 
 <div class='row'>
-  <div class='col-md-offset-2 col-md-8'>
+  <div class='col-md-2' id='quick-links'>
+    Quick Links
+  </div>
+  <div class='col-md-8'>
     <ul class="nav nav-tabs">
       <% @topics.each do |item| %>
         <li role="presentation"><%= link_to item.name, topic_path(item) %></li>

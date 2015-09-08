@@ -8,21 +8,20 @@
   <script></script>
 </head>
 <body>
-  <div class='container'>
-    <div class='row user-info'>
+  <div class='container'>    
+    <div class='row top-bar'>
+      <ul class="nav nav-pills">
+        <li><%= link_to "Home", static_index_path %></li>
+        <li><%= link_to "Top Posts", topic_posts_path(Topic.first) %></li>
+        <li><%= link_to "Users", users_path %></li>
+      </ul>
+      <div class='row user-info'>
       <% if current_user %>
         <div class='pull-right'>
           Hello <%= link_to current_user.username, edit_user_registration_path(current_user) %>! <%= link_to " ", destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out' %>
         </div>
       <% end %>
     </div>
-    <div class='row'>
-      <ul class="nav nav-pills">
-        <li><%= link_to "Home", static_index_path %></li>
-        <li><%= link_to "Top Posts", topic_posts_path(Topic.first) %></li>
-        <li><%= link_to "Contact", static_contact_path %></li>
-        <li><%= link_to "Users", users_path %></li>
-      </ul>
     </div>
     <div class='flash-container'>
       <% if flash[:notice] %>
