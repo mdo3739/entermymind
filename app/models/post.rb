@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   validates :topic, presence: true
 
   default_scope {order("created_at DESC")}
+  scope :ranked, -> {reorder('rank DESC')}
 
   def up_votes
     votes.where(value: 1).count
@@ -19,5 +20,11 @@ class Post < ActiveRecord::Base
 
   def sum
     up_votes - down_votes
+  end
+
+  def update_rank
+    age_in_days = (Time.now - self.created_at) / 86400
+    new_rank = sum * 2 - age_in_days
+    update_attribute(:rank, new_rank)
   end
 end

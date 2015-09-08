@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all.paginate(page: params[:page], per_page: 10)
+    @posts = Post.ranked.paginate(page: params[:page], per_page: 10)
     authorize @posts
   end
 

@@ -1,7 +1,7 @@
 <% posts.each do |post| %>
-      <%= render partial: 'votes/voter', locals: {post: post} %>
-      <div>
-        <h4><%= link_to post.title, topic_post_path(post.topic, post) %></h4>
-        <small><%= post.created_at %></small>
-      </div><br />
+  <%= render partial: 'votes/voter', locals: {post: post} %>
+  <div>
+    <h4><%= link_to post.title, topic_post_path(post.topic, post) %></h4>
+    <small><%= post.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %e, %Y %l:%M %P") %></small>
+  </div><br />
 <% end %>

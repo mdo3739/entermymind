@@ -1,5 +1,5 @@
 <h1><%= @user.username %></h1>
-Date joined: <%= @user.created_at.strftime("%B %e, %Y") %>
+Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
 Posts: <%= @user.posts.count %><br/>
 Comments made: <%= @user.comments.count %><br/>
 <% if current_user && (current_user.admin? || current_user == @user) %>
@@ -10,10 +10,10 @@ Comments made: <%= @user.comments.count %><br/>
   <div class='col-md-offset-2 col-md-8'>
     <ul class="nav nav-tabs">
       <% @topics.each do |item| %>
-        <li role="presentation"><%= link_to item.name, topic_path(item), data_toggle: 'tab' %></li>
+        <li role="presentation"><%= link_to item.name, topic_path(item) %></li>
       <% end %> 
 
-      <% if policy(@topic).update? %>
+      <% if policy(@topic).update? %> 
         <div class='pull-right'><%= link_to " ", topics_path, class: 'glyphicon glyphicon-pencil' %></div>
       <% end %>
     </ul><br />
@@ -25,5 +25,3 @@ Comments made: <%= @user.comments.count %><br/>
   </div>
 </div>
 <br>
-<%= link_to 'Edit', edit_topic_path(@topic) %>
-<%= link_to 'Back', topics_path %>
