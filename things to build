@@ -10,3 +10,23 @@ my circle?/friends list
 
 things to put in quick links box:
 people i enjoy reading about
+
+1   1  2   3  5  8   13   21
+0   -1 -1 -1  0  2    5   13
+1   2  3   4  5  6   7    8
+
+
+array = []
+first_number = 1
+second_number = 0
+first_number_clone = 1
+for n in 1..10 do
+  array << first_number
+  first_number += second_number
+  second_number += first_number_clone
+  first_number_clone = first_number
+end
+
+def fib(num)
+  
+end
