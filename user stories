@@ -1,6 +1,7 @@
-Home:
+Misc:
 create a sign in link in the nav bar
 make sign in link a modal
+change message for users who have not been confirmed
 
 Top Posts:
 
@@ -17,6 +18,11 @@ reorder topics - custom
 
 Post show
 
+user index
+ranking of users
+
 if 16 personalities give me permission:
 make avatar choosing a modal
 able to categorize people by personality type
+
+<li><%= link_to "Top Posts", topic_posts_path(Topic.first) %></li>
