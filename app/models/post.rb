@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
 
   default_scope {order("created_at DESC")}
   scope :ranked, -> {reorder('rank DESC')}
+  scope :updated_at, -> {reorder('updated_at DESC')}
 
   def up_votes
     votes.where(value: 1).count
