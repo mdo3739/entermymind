@@ -2,7 +2,9 @@
 Date published: <%= @post.created_at.strftime("%B %e, %Y") %><br />
 Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
 Public: <%= @post.public %><br />
-<%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %><br/>
+<% if @post.user == current_user %>
+  <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+<% end %><br/>
 <%= render partial: 'votes/voter', locals: {post: @post} %>
 <div>
      <h3><%= pluralize(@post.sum, 'point') %></h3>
@@ -23,4 +25,4 @@ Public: <%= @post.public %><br />
 <% if current_user %>
   <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
 <% end %>
-<%= link_to 'Back', topic_path(@topic) %>
+<%= link_to 'Back', user_path(@user) %>

@@ -15,29 +15,31 @@
     Quick Links
   </div>
   <div class='col-md-8'>
+    <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-   
-      <% @topics.each do |topic| %> 
-        <li role="presentation"  class="<%= 'active' if @topic.name == topic.name %> ">
-          <%= link_to topic.name, topic_path(topic) %>
+      <% @topics.each do |topic| %>
+        <li role="presentation" class="">
+          <a href="#<%= topic.name %>" aria-controls="<%= topic.name %>" role="tab" data-toggle="tab">
+            <%= topic.name %>
+          </a>
         </li>
-      <% end %> 
-
-
-      <% if @user == current_user %> 
-        <div class='pull-right'><%= link_to " ", topics_path, class: 'glyphicon glyphicon-pencil' %></div>
       <% end %>
     </ul>
-    <% if (@user == current_user) && @topic %>
-      <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %><br/>
-    <% end %>
 
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <br/>
+      <% @topics.each do |topic| %>
+        <div role="tabpanel" class="tab-pane" id="<%= topic.name %>">
+          <% if (@user == current_user) %>
+            <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
+          <% end %>
 
+          <%= render partial: 'posts/post_list', locals: {posts: topic.posts} %>
+        </div>
+      <% end %>
+    </div>
 
-    <%= render partial: 'posts/post_list', locals: {posts: @posts} %>
-    <% if @posts.size > 0 %>
-      <%= will_paginate @posts %>
-    <% end %>
   </div>
 </div>
 <br>

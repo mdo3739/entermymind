@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError do |exception|
     if current_user
-      redirect_to topic_url(current_user.topics.first), alert: "Don't touch it if it's not yours!"
+      redirect_to user_url(current_user), alert: "Don't touch it if it's not yours!"
     else
       redirect_to root_url, alert: "Please sign in first"
     end
