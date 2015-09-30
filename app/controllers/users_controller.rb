@@ -10,8 +10,11 @@ class UsersController < ApplicationController
     else
       @topics = @user.topics.where(public: true)
     end
-    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
     @topic = @topics.first
-    authorize @topic
+    if @topic
+      @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
+    else
+      @posts = []
+    end
   end
 end

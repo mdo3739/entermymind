@@ -7,9 +7,6 @@
     Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
     Posts: <%= @user.posts.count %><br/>
     Comments made: <%= @user.comments.count %><br/>
-    <% if current_user && (current_user.admin? || current_user == @user) %>
-      Public: <%= @topic.public %>
-    <% end %>
   </div>
 </div>
 
@@ -27,18 +24,20 @@
       <% end %> 
 
 
-      <% if policy(@topic).update? %> 
+      <% if @user == current_user %> 
         <div class='pull-right'><%= link_to " ", topics_path, class: 'glyphicon glyphicon-pencil' %></div>
       <% end %>
     </ul>
-    <% if policy(@topic).update? %>
+    <% if (@user == current_user) && @topic %>
       <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %><br/>
     <% end %>
 
 
 
     <%= render partial: 'posts/post_list', locals: {posts: @posts} %>
-    <%= will_paginate @posts %>
+    <% if @posts.size > 0 %>
+      <%= will_paginate @posts %>
+    <% end %>
   </div>
 </div>
 <br>

@@ -2,14 +2,9 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:edit, :update, :destroy]
 
   def index
-    if !current_user 
-      @topics = Topic.new
-    elsif current_user.admin?
-      @topics = Topic.all
-    else
-      @topics = current_user.topics
-    end
+    @topics = current_user.topics
     authorize @topics
+    @user = current_user
   end
 
   # GET /topics/new
