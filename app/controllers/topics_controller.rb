@@ -1,28 +1,10 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:edit, :update, :destroy]
 
   def index
-    if !current_user 
-      @topics = Topic.new
-    elsif current_user.admin?
-      @topics = Topic.all
-    else
-      @topics = current_user.topics
-    end
+    @topics = current_user.topics
     authorize @topics
-  end
-
-  # GET /topics/1
-  # GET /topics/1.json
-  def show
-    @user = @topic.user
-    if current_user && ((current_user == @user) || current_user.admin?)
-      @topics = @user.topics
-    else
-      @topics = @user.topics.where(public: true)
-    end
-    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
-    authorize @topic
+    @user = current_user
   end
 
   # GET /topics/new

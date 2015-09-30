@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    user.present? && record.first.user == user
+    true
   end
 
   def show?

@@ -5,7 +5,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @topics = @user.topics
-    @topic = @topics.first
+    if current_user && ((current_user == @user) || current_user.admin?)
+      @topics = @user.topics
+    else
+      @topics = @user.topics.where(public: true)
+    end
   end
 end

@@ -1,4 +1,4 @@
 <h1>Users#index</h1>
 <% @users.each do |user| %>
-  <%= link_to user.username, topic_path(user.topics.first) %><br/>
+  <%= link_to user.username, user_path(user) %><br/>
 <% end %>

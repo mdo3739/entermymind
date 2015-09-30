@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @comment = Comment.new
+    @user = @post.user
   end
 
   def new
