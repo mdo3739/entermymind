@@ -1,0 +1,45 @@
+<div class='row'>
+  <div class='col-md-2' id='avatar'>
+
+  </div>
+  <div class='col-md-8'>
+    <h1><%= @user.username %></h1>
+    Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
+    Posts: <%= @user.posts.count %><br/>
+    Comments made: <%= @user.comments.count %><br/>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-2' id='quick-links'>
+    Quick Links
+  </div>
+  <div class='col-md-8'>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <% @topics.each do |topic| %>
+        <li role="presentation" class="">
+          <a href="#<%= topic.name %>" aria-controls="<%= topic.name %>" role="tab" data-toggle="tab">
+            <%= topic.name %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <br/>
+      <% @topics.each do |topic| %>
+        <div role="tabpanel" class="tab-pane" id="<%= topic.name %>">
+          <% if (@user == current_user) %>
+            <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
+          <% end %>
+
+          <%= render partial: 'posts/post_list', locals: {posts: topic.posts} %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+<br>
