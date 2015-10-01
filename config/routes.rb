@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   end
   resources :topics do
     resources :posts, except: [:index]
+    post '/reorder_posts' => 'topic#reorder_posts', as: :reorder_posts
   end
 end

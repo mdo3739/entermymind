@@ -60,6 +60,10 @@ class TopicsController < ApplicationController
     end
   end
 
+  def reorder_posts(order)
+    self.update_attributes(posts_order: order)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
