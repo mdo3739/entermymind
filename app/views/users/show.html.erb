@@ -24,6 +24,9 @@
           </a>
         </li>
       <% end %>
+      <% if @user == current_user %> 
+        <div class='pull-right'><%= link_to " ", topics_path, class: 'glyphicon glyphicon-pencil' %></div>
+      <% end %>
     </ul>
 
     <!-- Tab panes -->
@@ -34,37 +37,26 @@
           <% if (@user == current_user) %>
             <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
           <% end %>
-
+          Order by: 
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              Order By
+              <%= topic.posts_order %>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to "Newest First", topic_reorder_posts_path(topic), method: :post %></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
+              <li><%= link_to "Newest First", topic_newest_first_path(topic), method: :post %></li>
+              <li><%= link_to "Oldest First", topic_oldest_first_path(topic), method: :post %></li>
+              <li><%= link_to "A - Z", topic_a_to_z_path(topic), method: :post %></li>
+              <li><%= link_to "Z - A", topic_z_to_a_path(topic), method: :post %></li>
+              <li><%= link_to "Highest Rank", topic_highest_rank_path(topic), method: :post %></li>
+              <li><%= link_to "Lowest Rank", topic_lowest_rank_path(topic), method: :post %></li>
             </ul>
           </div>
 
-          <!-- NEEDS TO BE REFACTORED -->
-          <% case topic.posts_order %>
-          <% when "newest first" %>
-            <% @posts = topic.posts.sort_by(&:created_at).reverse %>
-          <% when "oldest first" %>
-            <% @posts = topic.posts.sort_by(&:created_at) %>
-          <% when "A-Z" %>
-            <% @posts = topic.posts.sort_by(&:title) %>
-          <% when "Z-A" %>
-            <% @posts = topic.posts.sort_by(&:title).reverse %>
-          <% when "highest rank" %>
-            <% @posts = topic.posts.ranked %>
-          <% when "lowest rank" %>
-            <% @posts = topic.posts.ranked.reverse %>
+          <% if topic.posts.size > 0 %>
+            <% posts = topic.order_posts%>
+            <%= render partial: 'posts/post_list', locals: {posts: posts} %>
           <% end %>
-
-          <%= render partial: 'posts/post_list', locals: {posts: @posts} %>
         </div>
       <% end %>
     </div>

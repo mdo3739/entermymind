@@ -60,8 +60,28 @@ class TopicsController < ApplicationController
     end
   end
 
-  def reorder_posts(order)
-    self.update_attributes(posts_order: order)
+  def newest_first
+    set_posts_order_attribute('Newest First')
+  end
+
+  def oldest_first
+    set_posts_order_attribute('Oldest First')
+  end
+
+  def a_to_z
+    set_posts_order_attribute('A - Z')
+  end
+
+  def z_to_a
+    set_posts_order_attribute('Z - A')
+  end
+
+  def highest_rank
+    set_posts_order_attribute('Highest Rank')
+  end
+
+  def lowest_rank
+    set_posts_order_attribute('Lowest Rank')
   end
 
   private
@@ -73,4 +93,17 @@ class TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:name, :user_id, :public)
     end
+
+    def set_posts_order_attribute(order)
+      @topic = Topic.find(params[:topic_id])
+      
+      if @topic.update_attributes(posts_order: order)
+        flash[:notice] = "Success!"
+        redirect_to :back
+      else
+        flash[:error] = "Oh noo.."
+        redirect_to :back
+      end
+    end
+
 end

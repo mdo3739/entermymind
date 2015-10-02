@@ -42,7 +42,8 @@ Topic.all.each do |topic|
       title:  Faker::Company.catch_phrase,
       body:   Faker::Hacker.say_something_smart,
       topic:  topic,
-      public: true
+      public: true,
+      created_at: Faker::Date.backward(7)
     )
   end
 end
@@ -52,7 +53,8 @@ Post.all.each do |post|
     Comment.create!(
       user: User.all.sample,
       post: post,
-      body: Faker::Lorem.sentences(1)
+      body: Faker::Lorem.sentences(1),
+      created_at: Faker::Date.backward(14)
     )
   end
 end

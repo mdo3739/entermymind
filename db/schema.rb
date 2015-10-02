@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 20151001032553) do
     t.string   "name"
     t.integer  "user_id"
     t.boolean  "public",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "posts_order"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "posts_order", default: "Newest First"
   end
 
   add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
