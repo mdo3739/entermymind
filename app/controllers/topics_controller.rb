@@ -96,7 +96,7 @@ class TopicsController < ApplicationController
 
     def set_posts_order_attribute(order)
       @topic = Topic.find(params[:topic_id])
-      
+      authorize @topic
       if @topic.update_attributes(posts_order: order)
         flash[:notice] = "Success!"
         redirect_to :back

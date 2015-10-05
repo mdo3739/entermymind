@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :friends
   get 'static/index'
   get 'static/contact'
   root to: 'static#index'

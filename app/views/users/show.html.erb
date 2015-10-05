@@ -37,6 +37,7 @@
           <% if (@user == current_user) %>
             <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
           <% end %>
+          <% if policy(topic).update? %>
           Order by: 
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -52,7 +53,7 @@
               <li><%= link_to "Lowest Rank", topic_lowest_rank_path(topic), method: :post %></li>
             </ul>
           </div>
-
+          <% end %>
           <% if topic.posts.size > 0 %>
             <% posts = topic.order_posts%>
             <%= render partial: 'posts/post_list', locals: {posts: posts} %>
