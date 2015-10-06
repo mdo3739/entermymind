@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :friends
-  get 'static/index'
   get 'static/contact'
+  get 'static/index'
   root to: 'static#index'
   
   devise_for :users
@@ -21,4 +20,5 @@ Rails.application.routes.draw do
     post '/highest-rank' => 'topics#highest_rank', as: :highest_rank
     post '/lowest-rank' => 'topics#lowest_rank', as: :lowest_rank
   end
+  resources :friendships
 end

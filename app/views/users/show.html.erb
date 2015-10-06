@@ -7,6 +7,9 @@
     Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
     Posts: <%= @user.posts.count %><br/>
     Comments made: <%= @user.comments.count %><br/>
+    <% if current_user && current_user != @user %>
+      <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>
 
