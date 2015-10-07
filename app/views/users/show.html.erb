@@ -7,15 +7,21 @@
     Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
     Posts: <%= @user.posts.count %><br/>
     Comments made: <%= @user.comments.count %><br/>
-    <% if current_user && current_user != @user %>
-      <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
+    <% if current_user && (current_user != @user) && !current_user.friends.include?(@user) %>
+      <%= link_to "Follow", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
     <% end %>
   </div>
 </div>
 
 <div class='row'>
   <div class='col-md-2' id='quick-links'>
-    Quick Links
+    My List <hr/>
+    <% @user.friendships.each do |friendship| %>
+      <%= link_to friendship.friend.username, user_path(friendship.friend) %>
+        <span style='text-align: right'>
+          <%= link_to "x", friendship_path(friendship), method: :delete, data: {confirm: 'Remove from your list?'}, style: 'text_align:right' %><br/>
+        </span>
+    <% end %>
   </div>
   <div class='col-md-8'>
     <!-- Nav tabs -->
