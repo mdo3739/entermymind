@@ -2,14 +2,19 @@
   <div class='col-md-2' id='avatar'>
 
   </div>
-  <div class='col-md-8'>
-    <h1><%= @user.username %></h1>
-    Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
-    Posts: <%= @user.posts.count %><br/>
-    Comments made: <%= @user.comments.count %><br/>
-    <% if current_user && (current_user != @user) && !current_user.friends.include?(@user) %>
-      <%= link_to "Follow", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
-    <% end %>
+    <div class='col-md-8'>
+      <div class='col-md-4'>
+        <h1><%= @user.username %></h1>
+        Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
+        Posts: <%= @user.posts.count %><br/>
+        Comments made: <%= @user.comments.count %><br/>
+        <% if current_user && (current_user != @user) && !current_user.friends.include?(@user) %>
+          <%= link_to "Follow", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  <div class='col-md-4'>
+  <%= render partial: 'posts/search_bar' %><br/>
   </div>
 </div>
 
@@ -47,21 +52,22 @@
             <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
           <% end %>
           <% if policy(topic).update? %>
-          Order by: 
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <%= topic.posts_order %>
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><%= link_to "Newest First", topic_newest_first_path(topic), method: :post %></li>
-              <li><%= link_to "Oldest First", topic_oldest_first_path(topic), method: :post %></li>
-              <li><%= link_to "A - Z", topic_a_to_z_path(topic), method: :post %></li>
-              <li><%= link_to "Z - A", topic_z_to_a_path(topic), method: :post %></li>
-              <li><%= link_to "Highest Rank", topic_highest_rank_path(topic), method: :post %></li>
-              <li><%= link_to "Lowest Rank", topic_lowest_rank_path(topic), method: :post %></li>
-            </ul>
-          </div>
+            Order by: 
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <%= topic.posts_order %>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><%= link_to "Newest First", topic_path(topic, topic: {posts_order: "Newest First"}), method: :put %></li>
+                <li><%= link_to "Oldest First", topic_path(topic, topic: { posts_order: "Oldest First"}), method: :put %></li>
+                <li><%= link_to "A - Z", topic_path(topic, topic: {posts_order: "A - Z"}), method: :put %></li>
+                <li><%= link_to "Z - A", topic_path(topic, topic: {posts_order: "Z - A"}), method: :put %></li>
+                <li><%= link_to "Highest Rank", topic_path(topic, topic: {posts_order: "Highest Rank"}), method: :put %></li>
+                <li><%= link_to "Lowest Rank", topic_path(topic, topic: {posts_order: "Lowest Rank"}), method: :put %></li>
+                <li><%= link_to "Newest First", topic_path(topic, topic: { posts_order: "Newest First"}), method: :put %></li>
+              </ul>
+            </div>
           <% end %>
           <% if topic.posts.size > 0 %>
             <% posts = topic.order_posts%>

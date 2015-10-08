@@ -5,6 +5,9 @@ class TopicsController < ApplicationController
     @topics = current_user.topics
     authorize @topics
     @user = current_user
+
+
+
   end
 
   # GET /topics/new
@@ -41,11 +44,11 @@ class TopicsController < ApplicationController
     authorize @topic
     respond_to do |format|
       if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
-        format.html { render :edit }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back }
+        format.json { redirect_to :back, status: :unprocessable_entity }
       end
     end
   end
@@ -91,7 +94,7 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:name, :user_id, :public)
+      params.require(:topic).permit(:name, :user_id, :public, :posts_order)
     end
 
     def set_posts_order_attribute(order)
