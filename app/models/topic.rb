@@ -7,20 +7,26 @@ class Topic < ActiveRecord::Base
 
   default_scope { order(:id)}
 
-  def order_posts
-    case self.posts_order
-    when "Newest First"
-      self.posts.sort_by(&:created_at).reverse
-    when "Oldest First"
-      self.posts.sort_by(&:created_at)
-    when "A - Z"
-      self.posts.sort_by { |post| post[:title].downcase}
-    when "Z - A"
-      self.posts.sort_by { |post| post[:title].downcase}.reverse
-    when "Highest Rank"
-      self.posts.ranked
-    when "Lowest Rank"
-     self.posts.ranked.reverse
+  # Class method returns a list of topics
+  def self.search(search, user)
+    final_product = []
+    by_topic_name = user.topics.where('name ILIKE ?', "%#{search}%")
+    by_topic_name.each do |topic|
+      final_product << topic
     end
+
+    posts_by_title = Post.where('title ILIKE ?', "%#{search}%")
+    posts_by_title.each do |post|
+      unless final_product.include?(post.topic)
+        final_product << post.topic
+      end
+    end
+    final_product
+  end
+
+  # Instance method returns a list of posts
+  def search(search)
+    self.posts.where("title ILIKE ?", "%#{search}%")
+    # this is where i need to add search by body to array then return array
   end
 end

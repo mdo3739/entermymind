@@ -1,23 +1,37 @@
 <div class='row'>
+
+  <!-- Avatar -->
   <div class='col-md-2' id='avatar'>
-
+    <img src='https://www.drupal.org/files/profile_default.jpg' height='150' width='150'/>
   </div>
-    <div class='col-md-8'>
-      <div class='col-md-4'>
-        <h1><%= @user.username %></h1>
-        Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
-        Posts: <%= @user.posts.count %><br/>
-        Comments made: <%= @user.comments.count %><br/>
-        <% if current_user && (current_user != @user) && !current_user.friends.include?(@user) %>
-          <%= link_to "Follow", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
-        <% end %>
-      </div>
+
+  <div class='col-md-10'>
+    <h1><%= @user.username %></h1>
+
+    <!-- User info -->
+    <div class='col-md-4'>
+      Date joined: <%= @user.created_at.strftime("%B %e, %Y") %><br/>
+      Posts: <%= @user.posts.count %><br/>
+      Comments made: <%= @user.comments.count %><br/>
+      <% if current_user && (current_user != @user) && !current_user.friends.include?(@user) %>
+        <%= link_to "Follow", friendships_path(friend_id: @user), method: :post, class: 'btn btn-success' %>
+      <% end %>
     </div>
-  <div class='col-md-4'>
-  <%= render partial: 'posts/search_bar' %><br/>
-  </div>
-</div>
 
+    <!-- Search Bar -->
+    <div class='col-md-8 search-bar'>
+      <%= render partial: 'posts/search_bar' %><br/>
+      <%= form_tag user_path(@user), :method => 'get' do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search", :name => nil %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div><br/>
+
+<!-- Quick Links -->
 <div class='row'>
   <div class='col-md-2' id='quick-links'>
     My List <hr/>
@@ -29,7 +43,8 @@
     <% end %>
   </div>
   <div class='col-md-8'>
-    <!-- Nav tabs -->
+
+    <!-- Topic tabs -->
     <ul class="nav nav-tabs" role="tablist">
       <% @topics.each_with_index do |topic, index| %>
         <li role="presentation" class="<%= 'active' if index == 0 %>">
@@ -43,14 +58,16 @@
       <% end %>
     </ul>
 
-    <!-- Tab panes -->
+    <!-- Tab panes (posts) -->
     <div class="tab-content">
       <br/>
       <% @topics.each_with_index do |topic, index| %>
         <div role="tabpanel" class="tab-pane <%= 'active' if index == 0 %>" id="<%= topic.name %>">
+
           <% if (@user == current_user) %>
             <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
           <% end %>
+
           <% if policy(topic).update? %>
             Order by: 
             <div class="dropdown">
@@ -65,14 +82,16 @@
                 <li><%= link_to "Z - A", topic_path(topic, topic: {posts_order: "Z - A"}), method: :put %></li>
                 <li><%= link_to "Highest Rank", topic_path(topic, topic: {posts_order: "Highest Rank"}), method: :put %></li>
                 <li><%= link_to "Lowest Rank", topic_path(topic, topic: {posts_order: "Lowest Rank"}), method: :put %></li>
-                <li><%= link_to "Newest First", topic_path(topic, topic: { posts_order: "Newest First"}), method: :put %></li>
               </ul>
             </div>
           <% end %>
+
           <% if topic.posts.size > 0 %>
-            <% posts = topic.order_posts%>
+            <!-- .order_posts is being sent in as a class method from Post class -->
+            <% posts = topic.search(params[:search]).order_posts %>
             <%= render partial: 'posts/post_list', locals: {posts: posts} %>
           <% end %>
+
         </div>
       <% end %>
     </div>

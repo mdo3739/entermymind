@@ -28,4 +28,23 @@ class Post < ActiveRecord::Base
     new_rank = sum * 2 - age_in_days
     update_attribute(:rank, new_rank)
   end
+
+  def self.order_posts
+    case self.all.first.topic.posts_order
+    when "Newest First"
+      self.all.sort_by(&:created_at).reverse
+    when "Oldest First"
+      self.all.sort_by(&:created_at)
+    when "A - Z"
+      self.all.sort_by { |post| post[:title].downcase}
+    when "Z - A"
+      self.all.sort { |a, b| b[:title].downcase <=> a[:title].downcase }
+    when "Highest Rank"
+      self.ranked
+    when "Lowest Rank"
+     self.ranked.reverse
+    end
+  
+    
+  end
 end

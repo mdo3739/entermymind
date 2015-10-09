@@ -63,29 +63,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def newest_first
-    set_posts_order_attribute('Newest First')
-  end
-
-  def oldest_first
-    set_posts_order_attribute('Oldest First')
-  end
-
-  def a_to_z
-    set_posts_order_attribute('A - Z')
-  end
-
-  def z_to_a
-    set_posts_order_attribute('Z - A')
-  end
-
-  def highest_rank
-    set_posts_order_attribute('Highest Rank')
-  end
-
-  def lowest_rank
-    set_posts_order_attribute('Lowest Rank')
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

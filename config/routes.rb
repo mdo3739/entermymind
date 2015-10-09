@@ -13,12 +13,6 @@ Rails.application.routes.draw do
   end
   resources :topics do
     resources :posts, except: [:index]
-    post '/newest-first' => 'topics#newest_first', as: :newest_first
-    post '/oldest-first' => 'topics#oldest_first', as: :oldest_first
-    post '/a-z' => 'topics#a_to_z', as: :a_to_z
-    post '/z-a' => 'topics#z_to_a', as: :z_to_a
-    post '/highest-rank' => 'topics#highest_rank', as: :highest_rank
-    post '/lowest-rank' => 'topics#lowest_rank', as: :lowest_rank
   end
   resources :friendships
 end

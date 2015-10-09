@@ -6,7 +6,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if current_user && ((current_user == @user) || current_user.admin?)
-      @topics = @user.topics
+      if params[:search]
+        @topics = @user.topics.search(params[:search], @user)
+        @topics.compact! if @topics.include?(nil)
+      else
+        @topics = @user.topics
+      end
     else
       @topics = @user.topics.where(public: true)
     end
