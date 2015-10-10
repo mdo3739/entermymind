@@ -14,4 +14,12 @@ class User < ActiveRecord::Base
   def admin?
     role == 'Da Boss'
   end
+
+  def points
+    points = 0
+    self.posts.each do |post|
+      points += post.sum
+    end
+    points
+  end
 end

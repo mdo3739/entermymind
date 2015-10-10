@@ -8,13 +8,7 @@ Top Posts:
 Top Users:
 
 User Show:
-allow the reordering of post by
-	created_at
-	updated_at
-	abc
-	rank
 reorder tabs if top one is clicked
-create a friends model
 reorder topics - custom
 voting refreshing
 
