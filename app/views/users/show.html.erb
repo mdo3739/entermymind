@@ -86,9 +86,9 @@
             </div>
           <% end %>
 
-          <% if topic.posts.size > 0 %>
-            <!-- .order_posts is being sent in as a class method from Post class -->
-            <% posts = topic.search(params[:search]).order_posts %>
+          <% posts = topic.search(params[:search]) %>
+          <% if posts.size > 0 %>
+            <% posts = posts.order_posts %>
             <%= render partial: 'posts/post_list', locals: {posts: posts} %>
           <% end %>
 
