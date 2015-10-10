@@ -80,8 +80,8 @@
                 <li><%= link_to "Oldest First", topic_path(topic, topic: { posts_order: "Oldest First"}), method: :put %></li>
                 <li><%= link_to "A - Z", topic_path(topic, topic: {posts_order: "A - Z"}), method: :put %></li>
                 <li><%= link_to "Z - A", topic_path(topic, topic: {posts_order: "Z - A"}), method: :put %></li>
-                <li><%= link_to "Highest Rank", topic_path(topic, topic: {posts_order: "Highest Rank"}), method: :put %></li>
-                <li><%= link_to "Lowest Rank", topic_path(topic, topic: {posts_order: "Lowest Rank"}), method: :put %></li>
+                <li><%= link_to "Highest Points", topic_path(topic, topic: {posts_order: "Highest Points"}), method: :put %></li>
+                <li><%= link_to "Lowest Points", topic_path(topic, topic: {posts_order: "Lowest Points"}), method: :put %></li>
               </ul>
             </div>
           <% end %>
