@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   def points
     points = 0
     self.posts.each do |post|
-      points += post.sum
+      points += post.up_votes
     end
     points
   end
