@@ -1,28 +1,41 @@
-<h1><%= @post.title %></h1><br />
-Date published: <%= @post.created_at.strftime("%B %e, %Y") %><br />
-Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
-Public: <%= @post.public %><br />
-<% if @post.user == current_user %>
-  <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
-<% end %><br/>
-<%= render partial: 'votes/voter', locals: {post: @post} %>
-<div>
-     <h3><%= pluralize(@post.sum, 'point') %></h3>
-     <small>
-       <%= pluralize(@post.up_votes, 'up vote') %>,
-       <%= pluralize(@post.down_votes, 'down vote') %>
-     </small>
+<!-- Heading -->
+<div class='row'>
+  <div class='col-md-2'>
+    <img src='https://www.drupal.org/files/profile_default.jpg' class='select-avatar' />
+  </div>
+  <div class='col-md-6'>
+    <h1><%= @post.title %></h1><br />
+    Author: <%= @post.user.username %><br/>
+    Date published: <%= @post.created_at.strftime("%B %e, %Y") %><br />
+    Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
+    <% if current_user == @user %>
+      Public: <%= @post.public %><br />
+      <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+    <% end %><br/>
+  </div>
+  <div class='col-md-4'>
+    <%= render partial: 'votes/voter', locals: {post: @post} %>
+    <div class='vote'>
+         <h3><%= pluralize(@post.sum, 'point') %></h3>
+         <small>
+           <%= pluralize(@post.up_votes, 'up vote') %>,
+           <%= pluralize(@post.down_votes, 'down vote') %>
+         </small>
+    </div><!-- vote -->
+  </div><!-- col-md-10 -->
+</div><!-- row --> <br/><br/>
+
+<!-- Body -->
+<div class='row'>
+  <%= @post.body %><br /><br />
+  <br/> <br/>
 </div>
 
-<%= @post.body %><br /><br />
-<% @comments.each do |comment| %>
-  <%= comment.body %><br />
-  <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
-  <%= link_to "Delete", post_comment_path(@post, comment), method: :delete %><br />
-<% end %><br />
-<br/> <br/>
-<%= render partial: 'comments/comment', collection: @comments %><br/>
-<% if current_user %>
-  <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
-<% end %>
-<%= link_to 'Back', user_path(@user) %>
+<!-- Comments -->
+<div class='row'>
+  <%= render partial: 'comments/comment', collection: @comments %><br/>
+  <% if current_user %>
+    <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
+  <% end %>
+  <%= link_to 'Back', user_path(@user) %>
+</div>

@@ -1,73 +1,72 @@
 <div class='row'>
 
   <!-- Avatar -->
-
-  <% if current_user %>
-    <div class='col-md-2' id='avatar'>
+  <div class='col-md-2' id='avatar'>
+    <% if current_user %>
       <a data-toggle='modal' data-target='#myModal' class='btn' >
         <img src='https://www.drupal.org/files/profile_default.jpg' class='select-avatar' />
       </a>
-    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title" id="myModalLabel" style='text-align:center'>Choose Your Personality Type</h3>
-          </div>
-          <div class="modal-body" style='text-align:center'>
-            <div class='col-md-3'>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              INTJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              INfJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ISTJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ISTP (-A/-T)<br/><br/>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3 class="modal-title" id="myModalLabel" style='text-align:center'>Choose Your Personality Type</h3>
             </div>
-            <div class='col-md-3'>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              INTP (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              INFP (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ISFJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ISFP (-A/-T)<br/><br/>
+            <div class="modal-body" style='text-align:center'>
+              <div class='col-md-3'>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                INTJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                INfJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ISTJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ISTP (-A/-T)<br/><br/>
+              </div>
+              <div class='col-md-3'>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                INTP (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                INFP (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ISFJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ISFP (-A/-T)<br/><br/>
+              </div>
+              <div class='col-md-3'>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ENTJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ENFJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ESTJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ESTP (-A/-T)<br/><br/>
+              </div>
+              <div class='col-md-3'>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ENTP (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ENFP (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ESFJ (-A/-T)<br/><br/>
+                <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
+                ESFP (-A/-T)<br/><br/>
+              </div>
             </div>
-            <div class='col-md-3'>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ENTJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ENFJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ESTJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ESTP (-A/-T)<br/><br/>
+            <div class="modal-footer" style='text-align:center'>
+              <h4>If you don't know your personality type, you can find out <a href='#'>here</a></h4>
             </div>
-            <div class='col-md-3'>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ENTP (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ENFP (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ESFJ (-A/-T)<br/><br/>
-              <%= link_to image_tag('https://www.drupal.org/files/profile_default.jpg', class: 'select-avatar'), user_path(current_user, user: {avatar: "link to image"}), method: :put %><br/>
-              ESFP (-A/-T)<br/><br/>
-            </div>
-          </div>
-          <div class="modal-footer" style='text-align:center'>
-            <h4>If you don't know your personality type, you can find out <a href='#'>here</a></h4>
           </div>
         </div>
       </div>
-    </div>
-  <% else %>
-    <img src='https://www.drupal.org/files/profile_default.jpg' class='select-avatar' />
-  <% end %>
+    <% else %>
+      <img src='https://www.drupal.org/files/profile_default.jpg' class='select-avatar' />
+    <% end %>
+  </div>
 
   <div class='col-md-10'>
     <h1><%= @user.username %></h1>
@@ -95,8 +94,8 @@
   </div>
 </div><br/>
 
-<!-- Quick Links -->
 <div class='row'>
+  <!-- Quick Links -->
   <div class='col-md-2' id='quick-links'>
     My List <hr/>
     <% @user.friendships.each do |friendship| %>
@@ -106,8 +105,8 @@
         </span>
     <% end %>
   </div>
-  <div class='col-md-8'>
 
+  <div class='col-md-8'>
     <!-- Topic tabs -->
     <ul class="nav nav-tabs" role="tablist">
       <% @topics.each_with_index do |topic, index| %>

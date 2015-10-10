@@ -1,5 +1,11 @@
-<p>
-  <%= comment.body %>
-</p>
-
-<%= link_to 'Edit', edit_post_comment_path(comment.post, comment) %><br/>
+<div>
+  <h5><%= comment.body %></h5>
+  <small>
+    by <%= link_to comment.user.username, user_path(comment.user) %>
+    on <%= comment.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %e, %Y at %l:%M %P") %> 
+  </small>
+  <% if comment.user == current_user %>
+    <%= link_to 'Edit', edit_post_comment_path(comment.post, comment) %> or
+    <%= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, data: {confirm: "Delete Comment?"} %>
+  <% end %>
+</div>

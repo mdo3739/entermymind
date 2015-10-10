@@ -7,12 +7,12 @@
   <%= csrf_meta_tags %>
   <script></script>
 </head>
-<body> 
-  <div class='top-bar'>
+<body>
+  <div class='top-bar navbar-fixed-top'>
     <div class='container'>
       <div class='row top-bar-info'>
         <div class='col-md-8 col-xs-8 nav-links'>
-          <ul class="nav nav-pills navbar-static-top">
+          <ul class="nav nav-pills">
             <li><%= link_to "Home", static_index_path %></li>
             <li><%= link_to "Top Posts", posts_path %></li>
             <li><%= link_to "Users", users_path %></li>

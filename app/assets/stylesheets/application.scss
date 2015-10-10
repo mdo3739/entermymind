@@ -58,3 +58,20 @@ body {
   height: 150px;
   width: 150px;
 }
+
+.nav-pills {
+  a:link, a:visited {
+    color: white;
+  }
+
+  a:hover {
+    color: black;
+  }
+}
+
+.user-info {
+  color: white;
+  a:link, a:visited {
+    color: grey;
+  }
+}

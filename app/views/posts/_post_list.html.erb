@@ -4,7 +4,7 @@
     <h4><%= link_to post.title, topic_post_path(post.topic, post) %></h4>
     <small>
       by <%= link_to post.user.username, user_path(post.user) %>
-      on <%= post.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %e, %Y %l:%M %P") %>
+      on <%= post.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %e, %Y at %l:%M %P") %>
     </small>
   </div><br />
 <% end %>
