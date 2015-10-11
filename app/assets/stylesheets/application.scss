@@ -48,6 +48,7 @@
 
 body {
   background-color: #C0C0C0;
+  padding-top: 70px;
 }
 
 .search-bar {
@@ -61,7 +62,7 @@ body {
 
 .nav-pills {
   a:link, a:visited {
-    color: white;
+    color: #C0C0C0;
   }
 
   a:hover {
@@ -69,9 +70,36 @@ body {
   }
 }
 
-.user-info {
+.user-info{
   color: white;
   a:link, a:visited {
     color: grey;
   }
+}
+
+#quick-links {
+  a:link, a:visited {
+    color: #C0C0C0;
+  }
+
+  a:hover {
+    color: black;
+  }
+}
+
+.small-avatar {
+  height: 50px;
+  width: 50px;
+}
+
+.form-control {
+  width: 50%;
+}
+
+.field > .form-control {
+  width: 15em;
+}
+
+.modal-content {
+  padding: 3em;
 }

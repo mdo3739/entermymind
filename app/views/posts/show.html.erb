@@ -3,33 +3,41 @@
   <div class='col-md-2'>
     <img src='https://www.drupal.org/files/profile_default.jpg' class='select-avatar' />
   </div>
-  <div class='col-md-6'>
-    <h1><%= @post.title %></h1><br />
-    Author: <%= @post.user.username %><br/>
-    Date published: <%= @post.created_at.strftime("%B %e, %Y") %><br />
-    Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
-    <% if current_user == @user %>
-      Public: <%= @post.public %><br />
-      <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
-    <% end %><br/>
-  </div>
-  <div class='col-md-4'>
-    <%= render partial: 'votes/voter', locals: {post: @post} %>
-    <div class='vote'>
-         <h3><%= pluralize(@post.sum, 'point') %></h3>
-         <small>
-           <%= pluralize(@post.up_votes, 'up vote') %>,
-           <%= pluralize(@post.down_votes, 'down vote') %>
-         </small>
-    </div><!-- vote -->
+  <div class='col-md-10'>
+    <div class='row'><h1><%= @post.title %></h1></div>
+
+    <div class='row'>
+      <div class='col-md-4'>
+        Author: <%= @post.user.username %><br/>
+        Date published: <%= @post.created_at.strftime("%B %e, %Y") %><br />
+        Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
+        <% if current_user == @user %>
+          Public: <%= @post.public %><br />
+          <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+        <% end %><br/>
+      </div>
+
+      <div class='col-md-5'>
+        <%= render partial: 'votes/voter', locals: {post: @post} %>
+        <div class='vote'>
+          <h3><%= pluralize(@post.sum, 'point') %></h3>
+          <small>
+            <%= pluralize(@post.up_votes, 'up vote') %>,
+            <%= pluralize(@post.down_votes, 'down vote') %>
+          </small>
+        </div><!-- vote -->
+      </div><!-- col-md-5 -->
+    </div><!-- row -->
   </div><!-- col-md-10 -->
 </div><!-- row --> <br/><br/>
 
 <!-- Body -->
 <div class='row'>
-  <%= @post.body %><br /><br />
-  <br/> <br/>
-</div>
+  <div class='col-md-9 col-md-offset-1' style='background-color: grey'>
+  <h4><%= @post.body %></h4><br /><br />
+  
+  </div>
+</div><br/> <br/>
 
 <!-- Comments -->
 <div class='row'>

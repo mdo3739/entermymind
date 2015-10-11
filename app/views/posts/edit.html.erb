@@ -3,4 +3,4 @@
 <%= render partial: 'form', locals: {topic: @topic, post: @post} %>
 
 <%= link_to 'Show', [@topic, @post] %> |
-<%= link_to 'Back', topic_path(@topic) %>
+<%= link_to 'Back', user_path(current_user) %>

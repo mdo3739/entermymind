@@ -29,7 +29,9 @@
             </div>
           <% else %>
             <div class='pull-right user-info'>
-              <%= link_to "Log in", new_user_session_path %> or <%= link_to "Sign up", new_user_registration_path %>
+              <a type="button" data-toggle="modal" data-target=".log-in">Log In</a> or 
+              <a type="button" data-toggle="modal" data-target=".sign-up">Sign Up</a>
+
             </div>
           <% end %>
         </div>

@@ -40,7 +40,7 @@ Topic.all.each do |topic|
   5.times do
     Post.create!(
       title:  Faker::Company.catch_phrase,
-      body:   Faker::Lorem.paragraph(5),
+      body:   Faker::Lorem.paragraph(20),
       topic:  topic,
       public: true,
       created_at: Faker::Date.backward(7)
@@ -70,9 +70,19 @@ Post.all.each do |post|
   end
 end
 
+User.all.each do |user|
+  4.times do
+    Friendship.create!(
+      user_id: user.id, 
+      friend_id: User.all.select {|u| !user.friends.include?(u)}.sample.id
+    )
+  end
+end
+
 puts "Seeding Complete"
 puts "#{User.all.count} users in the database"
 puts "#{Topic.all.count} topics in the database"
 puts "#{Post.all.count} posts in the database"
 puts "#{Comment.all.count} comments in the database"
 puts "#{Vote.all.count} votes created"
+puts "#{Friendship.all.count} friendships created"

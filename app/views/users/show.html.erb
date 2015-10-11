@@ -1,4 +1,22 @@
 <div class='row'>
+<%= link_to "Account", edit_user_registration_path(current_user) %>
+<!-- Sign-up modal -->
+<div class="modal fade sign-up" tabindex="-1" role="dialog" aria-labelledby="mySignUpModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= render partial: 'devise/registrations/new' %>
+    </div>
+  </div>
+</div>
+
+<!-- Log-in modal -->
+<div class="modal fade log-in" tabindex="-1" role="dialog" aria-labelledby="mySignUpModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= render partial: 'devise/sessions/new' %>
+    </div>
+  </div>
+</div>
 
   <!-- Avatar -->
   <div class='col-md-2' id='avatar'>
@@ -58,7 +76,7 @@
               </div>
             </div>
             <div class="modal-footer" style='text-align:center'>
-              <h4>If you don't know your personality type, you can find out <a href='#'>here</a></h4>
+              <h4>If you don't know your personality type, you can find out <a href='http://www.16personalities.com/personality-types'>here</a></h4>
             </div>
           </div>
         </div>
@@ -83,11 +101,10 @@
 
     <!-- Search Bar -->
     <div class='col-md-8 search-bar'>
-      <%= render partial: 'posts/search_bar' %><br/>
       <%= form_tag user_path(@user), :method => 'get' do %>
         <p>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search", :name => nil %>
+          <%= text_field_tag :search, params[:search], class: 'form-control' %>
+          <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
         </p>
       <% end %>
     </div>
@@ -97,7 +114,7 @@
 <div class='row'>
   <!-- Quick Links -->
   <div class='col-md-2' id='quick-links'>
-    My List <hr/>
+    Great Minds Think Alike <hr/>
     <% @user.friendships.each do |friendship| %>
       <%= link_to friendship.friend.username, user_path(friendship.friend) %>
         <span style='text-align: right'>

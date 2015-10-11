@@ -1,7 +1,8 @@
 <div>
-  <h5><%= comment.body %></h5>
+  <img src='https://www.drupal.org/files/profile_default.jpg'/ class='small-avatar pull-left'>
+  <h4>&nbsp;&nbsp;<%= comment.body %></h4>
   <small>
-    by <%= link_to comment.user.username, user_path(comment.user) %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by <%= link_to comment.user.username, user_path(comment.user) %>
     on <%= comment.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %e, %Y at %l:%M %P") %> 
   </small>
   <% if comment.user == current_user %>
