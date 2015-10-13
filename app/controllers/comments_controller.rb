@@ -36,9 +36,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to [@topic, @post], notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.json { redirect_to [@topic, @post], status: :created, location: @comment }
+        format.js
       else
-        format.html { render :new }
+        format.html { redirect_to [@topic, @post] }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -52,6 +53,7 @@ class CommentsController < ApplicationController
       if @comment.update(comment_params)
         format.html { redirect_to [@post.topic, @post], notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -67,6 +69,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to [@post.topic, @post], notice: 'Comment was successfully deleted.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

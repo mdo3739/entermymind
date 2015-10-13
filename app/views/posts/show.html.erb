@@ -41,9 +41,13 @@
 
 <!-- Comments -->
 <div class='row'>
-  <%= render partial: 'comments/comment', collection: @comments %><br/>
-  <% if current_user %>
-    <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
-  <% end %>
+  <div class='comments'>
+    <%= render partial: 'comments/comment', collection: @comments %><br/>
+  </div><br/>
+  <div class='new-comment'>
+    <% if current_user %>
+      <%= render partial: 'comments/form', locals: {post: @post, comment: @comment} %>
+    <% end %>
+  </div>
   <%= link_to 'Back', user_path(@user) %>
 </div>

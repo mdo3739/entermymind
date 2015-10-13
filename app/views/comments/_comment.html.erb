@@ -1,12 +1,30 @@
-<div>
+<div id='comment-<%= comment.id %>'>
   <img src='https://www.drupal.org/files/profile_default.jpg'/ class='small-avatar pull-left'>
-  <h4>&nbsp;&nbsp;<%= comment.body %></h4>
+  <h4>&nbsp;&nbsp;<%= comment.body %><%= comment.id %></h4>
   <small>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by <%= link_to comment.user.username, user_path(comment.user) %>
     on <%= comment.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %e, %Y at %l:%M %P") %> 
   </small>
   <% if comment.user == current_user %>
-    <%= link_to 'Edit', edit_post_comment_path(comment.post, comment) %> or
-    <%= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, data: {confirm: "Delete Comment?"} %>
+    <!-- Edit Button trigger modal -->
+    <button type="button" class="btn btn-link" data-toggle='modal' data-target="#editComment-<%= comment.id %>">
+      Edit
+    </button> or
+    <%= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, data: {confirm: "Delete Comment?"}, remote: true %>
   <% end %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editComment-<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Comment</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: 'comments/form', locals: {post: comment.post, comment: comment} %>
+      </div>
+    </div>
+  </div>
 </div>
