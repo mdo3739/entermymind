@@ -31,7 +31,8 @@ User.all.each do |user|
     Topic.create!(
       name: Faker::Commerce.department(1),
       user: user,
-      public: true
+      public: true,
+      description: Faker::Lorem.sentence
     )
   end
 end
