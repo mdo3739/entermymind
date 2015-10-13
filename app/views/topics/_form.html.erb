@@ -20,6 +20,12 @@
     <%= f.text_area :description, class: 'form-control' %>
   </div>
   <div class='form-group'>
+    <% if f.object.id %>
+      <p>
+        Changing this option will not affect posts that are already saved. <br/>
+        It will merely align the checkbox of future posts with this checkbox.
+      </p>
+    <% end %>
     <%= f.label :public %>
     <%= f.check_box :public %>
   </div>
