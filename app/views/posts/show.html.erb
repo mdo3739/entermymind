@@ -13,7 +13,7 @@
         Last edited: <%= @post.updated_at.strftime("%B %e, %Y") %><br />
         <% if current_user == @user %>
           Public: <%= @post.public %><br />
-          <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+          <%= link_to 'Edit', edit_topic_post_path(@topic, @post), class: 'btn btn-primary' %>
         <% end %><br/>
       </div>
 
