@@ -124,9 +124,11 @@
       <br/>
       <% @topics.each_with_index do |topic, index| %>
         <div role="tabpanel" class="tab-pane <%= 'active' if index == 0 %>" id="<%= topic.name %>">
-
+          <% if topic.description.size > 0 %>
+          <%= topic.description %><br/><br/>
+          <% end %>
           <% if (@user == current_user) %>
-            <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/>
+            <%= link_to "New Post", new_topic_post_path(topic), class: 'btn btn-success' %><br/><br/>
           <% end %>
 
           <% if policy(topic).update? %>
