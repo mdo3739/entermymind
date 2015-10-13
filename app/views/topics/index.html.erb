@@ -3,7 +3,8 @@
 <table width='700' class='table'>
   <thead>
     <tr>
-      <th>Table Name</th>
+      <th>Topic Name</th>
+      <th width='500'>Description</th>
       <th>Posts</th>
       <th>Edit Name</th>
       <th>Delete</th>
@@ -14,6 +15,7 @@
     <% @topics.each do |topic| %>
       <tr>
         <td><h4><%= topic.name %></h4></td>
+        <td><%= topic.description %></td>
         <td><%= topic.posts.count %></td>
         <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
         <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,5 +26,5 @@
 
 <br>
 
-<%= link_to 'New Topic', new_topic_path %>
-<%= link_to 'Back', user_path(@user) %>
+<%= link_to 'New Topic', new_topic_path, class: 'btn btn-default' %>
+<%= link_to 'Back', user_path(@user), class: 'btn btn-default' %>

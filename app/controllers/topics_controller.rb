@@ -44,7 +44,7 @@ class TopicsController < ApplicationController
     authorize @topic
     respond_to do |format|
       if @topic.update(topic_params)
-        format.html { redirect_to :back, notice: 'Topic was successfully updated.' }
+        format.html { redirect_to topics_path, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
         format.html { redirect_to :back }
@@ -71,7 +71,7 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:name, :user_id, :public, :posts_order)
+      params.require(:topic).permit(:name, :user_id, :public, :posts_order, :description)
     end
 
     def set_posts_order_attribute(order)
