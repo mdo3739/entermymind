@@ -1,0 +1,5 @@
+1.  Put the modal template into the page once
+2.  Make the edit link an AJAX link
+When the user lcicks the edit link:
+  1.  Use AJAX to fill in the modal template from data sent by the server
+  2.  Use Javascript to open up the modal
